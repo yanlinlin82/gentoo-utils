@@ -12,19 +12,19 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # emerge related
-emerge-sync() {
+emerge_sync() {
 	emerge --sync
 }
-emerge-upgrade() {
+emerge_upgrade() {
 	local A=$([[ $- == *i* ]] && echo "a" || echo "")
 	emerge -${A}vuDN --with-bdeps=y --keep-going --verbose-conflicts --changed-deps ${*:-@world}
 }
-emerge-monitor() {
+emerge_monitor() {
 	tail -f /var/log/emerge*
 }
-emerge-log() {
+emerge_log() {
 	cat /var/log/emerge.log | awk -F: '{OFS=":";$1=strftime("[%Y-%m-%d %H:%M:%S]",$1);print}' | cut -c1-21,23- | less -XS
 }
-emerge-cleanup() {
+emerge_cleanup() {
 	emerge -a --depclean
 }
