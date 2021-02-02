@@ -13,7 +13,7 @@ alias rm='rm -i'
 
 # emerge related
 emerge_sync() {
-	emerge --sync
+	emerge --sync && eupdatedb
 }
 emerge_upgrade() {
 	local A=$([[ $- == *i* ]] && echo "a" || echo "")
